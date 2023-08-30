@@ -17,11 +17,7 @@ with open('../json_avito/marks_models_all.json', 'r', encoding='utf-8') as file:
 
 df = pd.DataFrame(
     columns=['mark', 'name_model', 'type_of_car', 'type_of_drive', 'type_fuel', 'engine', 'power', 'mileage',
-             'is_broken', 'price'])
-
-driver = webdriver.Chrome()
-driver.set_window_size(1200, 800)
-driver.set_window_position(0, 0)
+             'is_broken', 'price', 'year'])
 
 count_models = 0
 for mark, models in marks_models_all['data'].items():
@@ -31,16 +27,20 @@ for mark, models in marks_models_all['data'].items():
 print(f'Всего моделей: {count_models}')
 count = 0
 
+driver = webdriver.Chrome()
+driver.set_window_size(1200, 800)
+driver.set_window_position(0, 0)
+
 for mark, models in marks_models_all['data'].items():
     for name_model, name_in_url in models.items():
         url = f'https://www.avito.ru/yaroslavskaya_oblast/avtomobili/{mark}/{name_in_url}&localPriority=1'
         # url = f'https://www.avito.ru/yaroslavskaya_oblast/avtomobili/vaz_lada/niva_travel-ASgBAgICAkTgtg3GmSjitg3uyz8?cd=1&localPriority=1'
         driver.get(url)
 
-
         def find():
             count_for_price = 0
             final_price = []
+            final_years = []
             try:
                 ads = driver.find_element(By.XPATH, '//*[@data-marker="catalog-serp"]')
                 try:
@@ -61,12 +61,20 @@ for mark, models in marks_models_all['data'].items():
                             final_price.append(int(price))
                         except:
                             final_price.append(int(price.split('от ')[1]))
+
+                years = soup.find_all('h3', class_='styles-module-root-TWVKW')
+                for year in years:
+                    year = year.text
+                    year = year.split(', ')[1]
+                    year = int(year)
+                    final_years.append(year)
+                print(final_years)
+
                 descriptions = soup.find_all('div', class_='iva-item-autoParamsStep-WzfS8')
                 for description in descriptions:
                     ad = description.find('p',
                                           class_='styles-module-root-_KFFt styles-module-size_s-awPvv styles-module-size_s-_P6ZA stylesMarningNormal-module-root-OSCNq stylesMarningNormal-module-paragraph-s-_c6vD')
                     if ad:
-
                         ad = ad.text
                         ad = ad.split(', ')
                         type_fuel = ad[len(ad) - 1]
@@ -89,7 +97,7 @@ for mark, models in marks_models_all['data'].items():
                         df.loc[len(df)] = [mark, name_in_url.split('-')[0], type_of_car, type_of_drive, type_fuel,
                                            engine,
                                            power, mileage,
-                                           is_broken, final_price[count_for_price]]
+                                           is_broken, final_price[count_for_price], final_years[count_for_price]]
                         count_for_price += 1
                         df.to_csv('../csv_avito/avito_yar_obl.csv', index=False)
                     else:
@@ -110,8 +118,6 @@ for mark, models in marks_models_all['data'].items():
 
         count += 1
         print(f'{count} из {count_models}')
-
-time.sleep(10)
 
 
 # 1049 из 2955
