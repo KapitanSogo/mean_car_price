@@ -96,7 +96,6 @@ for mark, models in marks_models_all['data'].items():
         if driver.find_elements(By.XPATH, '//*[@data-marker="pagination-button/page(2)"]'):
             driver.find_element(By.XPATH, '//*[@data-marker="pagination-button/page(2)"]').click()
             time.sleep(2)
-            # если адресная строка поменялась, то выполняем функцию find()
             if driver.current_url != url:
                 find()
 
