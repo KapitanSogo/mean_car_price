@@ -1,0 +1,46 @@
+{
+    "data": {
+        "offers": [
+            {
+                "name": "Skoda Rapid, 2016",
+                "price": 1235000,
+                "url": "https:\\/\\/yaroslavl.drom.ru\\/skoda\\/rapid\\/51436923.html"
+            },
+            {
+                "name": "Skoda Rapid, 2018",
+                "price": 1199000,
+                "url": "https:\\/\\/yaroslavl.drom.ru\\/skoda\\/rapid\\/52176471.html"
+            },
+            {
+                "name": "Skoda Rapid, 2018",
+                "price": 1375000,
+                "url": "https:\\/\\/yaroslavl.drom.ru\\/skoda\\/rapid\\/52017402.html"
+            },
+            {
+                "name": "Skoda Rapid, 2021",
+                "price": 1925000,
+                "url": "https:\\/\\/yaroslavl.drom.ru\\/skoda\\/rapid\\/52118026.html"
+            },
+            {
+                "name": "Skoda Rapid, 2020",
+                "price": 1799000,
+                "url": "https:\\/\\/yaroslavl.drom.ru\\/skoda\\/rapid\\/52115726.html"
+            },
+            {
+                "name": "Skoda Rapid, 2018",
+                "price": 1310000,
+                "url": "https:\\/\\/yaroslavl.drom.ru\\/skoda\\/rapid\\/52074447.html"
+            },
+            {
+                "name": "Skoda Rapid, 2019",
+                "price": 1585000,
+                "url": "https:\\/\\/yaroslavl.drom.ru\\/skoda\\/rapid\\/52008632.html"
+            },
+            {
+                "name": "Skoda Rapid, 2015",
+                "price": 985000,
+                "url": "https:\\/\\/yaroslavl.drom.ru\\/skoda\\/rapid\\/51516807.html"
+            }
+        ]
+    }
+}
