@@ -14,6 +14,7 @@ time.sleep(2)
 elements = driver.find_elements(By.CLASS_NAME, 'e4ojbx43')
 marks = []
 links_marks = []
+result_data = {'data': {}}
 
 for element in elements:
     marks.append(element.text)
@@ -26,6 +27,7 @@ for link in links_marks:
     link = link[-2]
     links_marks[i] = link
     i += 1
+    result_data['data'] = {marks[i]: links_marks[i]}
 
 print(marks)
 print(links_marks)

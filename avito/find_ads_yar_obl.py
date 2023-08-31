@@ -68,7 +68,6 @@ for mark, models in marks_models_all['data'].items():
                     year = year.split(', ')[1]
                     year = int(year)
                     final_years.append(year)
-                print(final_years)
 
                 descriptions = soup.find_all('div', class_='iva-item-autoParamsStep-WzfS8')
                 for description in descriptions:
